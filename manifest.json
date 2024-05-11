@@ -1,0 +1,11 @@
+{
+  "id": "auto-frontmatter",
+  "name": "【Auto Frontmatter】",
+  "description": "自动添加元数据",
+  "author": "fishyer",
+
+  "authorUrl": "https://blog.fishyer.com",
+
+  "minAppVersion": "0.11.0",
+  "version": "0.0.2"
+}
