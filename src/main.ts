@@ -253,11 +253,12 @@ export default class FrontmatterModified extends Plugin {
 						}
 						// 自动添加tags属性,值为空数组,方便hugo使用
 						const fileCache = this.app.metadataCache.getFileCache(file);
-						console.log("fileCache.tags: ",fileCache);
+						const fileCacheTags = fileCache?.tags || [];
+						console.log("fileCacheTags: ",fileCacheTags);
 						let tags:TagCache[]=[]
-						if (fileCache) {
+						if (fileCacheTags) {
 							console.log("fileCache存在,更新tags");
-							tags = fileCache.tags;
+							tags =fileCacheTags
 						}else{
 							console.log("fileCache不存在,新建tags");
 							tags = []
@@ -284,6 +285,18 @@ export default class FrontmatterModified extends Plugin {
 						console.log(slug);
 						if (!slug) {
 							frontmatter[this.settings.slugProperty] = frontmatter[this.settings.uuidProperty]
+						}
+						//自动添加obsidianLink属性,方便hugo使用
+						const obsidianLink = frontmatter["obsidianLink"];
+						console.log(obsidianLink);
+						if (!obsidianLink) {
+							frontmatter["obsidianLink"] = `obsidian://advanced-uri?vault=note&uid=${frontmatter[this.settings.uuidProperty]}`
+						}
+						// 自动添加hugoLink属性,方便hugo使用
+						const hugoLink = frontmatter["hugoLink"];
+						console.log(hugoLink);
+						if (!hugoLink) {
+							frontmatter["hugoLink"] = `https://blog.fishyer.com/post/${frontmatter[this.settings.uuidProperty]}/`
 						}
 						//自动添加zhihu-tags属性,值为tags的值,方便zhihu插件使用
 						const obsidian_tags = this.getStringTags(tags);
