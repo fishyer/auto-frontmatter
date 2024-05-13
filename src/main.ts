@@ -302,9 +302,9 @@ export default class FrontmatterModified extends Plugin {
 						const obsidian_tags = this.getStringTags(tags);
 						console.log("obsidian_tags: ",obsidian_tags);
 						frontmatter["tags"] = obsidian_tags
-						const zhihu_tags = this.getStringTags(tags);
-						console.log("zhihu_tags: ",zhihu_tags);
-						frontmatter[this.settings.zhihuTagsProperty] =zhihu_tags
+						// const zhihu_tags = this.getStringTags(tags);
+						// console.log("zhihu_tags: ",zhihu_tags);
+						// frontmatter[this.settings.zhihuTagsProperty] =zhihu_tags
 						// const published = frontmatter["published"];
 						// if (!published) {
 						// 	// 默认发布
