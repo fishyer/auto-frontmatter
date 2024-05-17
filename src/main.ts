@@ -49,7 +49,8 @@ export default class FrontmatterModified extends Plugin {
 
 	async onload() {
 		await this.loadSettings();
-
+		// 获取当前vault的名称
+		const vaultName = this.app.vault.getName();
 		if (!this.settings.useKeyupEvents) {
 			/*
 			 * This is the default mode, where we watch for a change in the editor and then
@@ -106,8 +107,6 @@ export default class FrontmatterModified extends Plugin {
 			name: "Tab-Copy for Advanced URL",
 			callback: () => {
 				console.log("Tab-Copy for Advanced URL");
-				// 获取当前vault的名称
-				const vaultName = this.app.vault.getName();
 				// 获取当前文件
 				const activeFile = this.app.workspace.getActiveFile();
 				if (activeFile) {
@@ -290,7 +289,7 @@ export default class FrontmatterModified extends Plugin {
 						const obsidianLink = frontmatter["obsidianLink"];
 						console.log(obsidianLink);
 						if (!obsidianLink) {
-							frontmatter["obsidianLink"] = `obsidian://advanced-uri?vault=note&uid=${frontmatter[this.settings.uuidProperty]}`
+							frontmatter["obsidianLink"] = `obsidian://advanced-uri?vault=${vaultName}&uid=${frontmatter[this.settings.uuidProperty]}`
 						}
 						// 自动添加hugoLink属性,方便hugo使用
 						const hugoLink = frontmatter["hugoLink"];
